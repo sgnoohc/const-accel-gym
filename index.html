@@ -2877,7 +2877,7 @@
             document.getElementById('problem-img').src = imagePath;
 
             // Parse the answer from the filename
-            const answerMatch = imagePath.match(/ans([\d.]+)\.png/);
+            const answerMatch = imagePath.match(/ans(-?[\d.]+)\.png/);
             if (answerMatch) {
                 currentAnswer = parseFloat(answerMatch[1]);
             }
@@ -2895,7 +2895,7 @@
 
             // Check if the answer is within 1% error
             const errorMargin = currentAnswer * 0.01;
-            if (Math.abs(userAnswer - currentAnswer) <= errorMargin) {
+            if (Math.abs(userAnswer - currentAnswer) <= Math.abs(errorMargin)) {
                 correctCount++;
                 document.getElementById('correct-count').textContent = correctCount;
 
@@ -2974,7 +2974,7 @@
 
         function loadSpecificProblem(imagePath) {
             document.getElementById('problem-img').src = imagePath;
-            const answerMatch = imagePath.match(/ans([\d.]+)\.png/);
+            const answerMatch = imagePath.match(/ans(-?[\d.]+)\.png/);
             if (answerMatch) {
                 currentAnswer = parseFloat(answerMatch[1]);
             }
